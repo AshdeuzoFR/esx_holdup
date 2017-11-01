@@ -49,16 +49,14 @@ AddEventHandler('esx_holdup:rob', function(robb)
 		for i=1, #xPlayers, 1 do
  		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
  		if xPlayer.job.name == 'police' then
-				--cops = cops + 1
-				cops = cops
+				cops = cops + 1
 			end
 		end
 
 
 		if rob == false then
 
-			--if(cops > 0)then
-				if(cops == 0)then
+			if(cops > 0)then
 
 				rob = true
 				for i=1, #xPlayers, 1 do
