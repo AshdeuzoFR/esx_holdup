@@ -49,14 +49,16 @@ AddEventHandler('esx_holdup:rob', function(robb)
 		for i=1, #xPlayers, 1 do
  		local xPlayer = ESX.GetPlayerFromId(xPlayers[i])
  		if xPlayer.job.name == 'police' then
-				cops = cops + 1
+				--cops = cops + 1
+				cops = cops
 			end
 		end
 
 
 		if rob == false then
 
-			if(cops > 0)then
+			--if(cops > 0)then
+				if(cops == 0)then
 
 				rob = true
 				for i=1, #xPlayers, 1 do
@@ -72,20 +74,14 @@ AddEventHandler('esx_holdup:rob', function(robb)
 				TriggerClientEvent('esx:showNotification', source, _U('hold_pos'))
 				--TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb)
 				
-				-- ADD Ashdeuzo
-				if (store.zone == "sudouest") then
-					TriggerClientEvent('esx_holdup:currentlyrobbingsudouest', source, robb)
-				elseif (store.zone == "sudest") then
-					TriggerClientEvent('esx_holdup:currentlyrobbingsudest', source, robb)
-				else 
-					TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb)
-				end
-				--END
+				-- ADD Ashdeuzo 
+				TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb, secondsRemaining)
+				
 				
 				Stores[robb].lastrobbed = os.time()
 				robbers[source] = robb
 				local savedSource = source
-				SetTimeout(100000, function()
+				SetTimeout(store.secondsRemaining*1000, function()
 
 					if(robbers[savedSource])then
 
