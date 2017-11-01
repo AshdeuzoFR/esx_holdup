@@ -72,20 +72,14 @@ AddEventHandler('esx_holdup:rob', function(robb)
 				TriggerClientEvent('esx:showNotification', source, _U('hold_pos'))
 				--TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb)
 				
-				-- ADD Ashdeuzo
-				if (store.zone == "sudouest") then
-					TriggerClientEvent('esx_holdup:currentlyrobbingsudouest', source, robb)
-				elseif (store.zone == "sudest") then
-					TriggerClientEvent('esx_holdup:currentlyrobbingsudest', source, robb)
-				else 
-					TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb)
-				end
-				--END
+				-- ADD Ashdeuzo 
+				TriggerClientEvent('esx_holdup:currentlyrobbing', source, robb, secondsRemaining)
+				
 				
 				Stores[robb].lastrobbed = os.time()
 				robbers[source] = robb
 				local savedSource = source
-				SetTimeout(100000, function()
+				SetTimeout(store.secondsRemaining*1000, function()
 
 					if(robbers[savedSource])then
 

@@ -34,26 +34,10 @@ function drawTxt(x,y ,width,height,scale, text, r,g,b,a, outline)
 end
 
 RegisterNetEvent('esx_holdup:currentlyrobbing')
-AddEventHandler('esx_holdup:currentlyrobbing', function(robb)
+AddEventHandler('esx_holdup:currentlyrobbing', function(robb, secondsRemaining)
 	holdingup = true
 	store = robb
-	secondsRemaining = 350 --EDIT ASH
-end)
-
----ADD ASHDEUZO
-RegisterNetEvent('esx_holdup:currentlyrobbingsudest')
-AddEventHandler('esx_holdup:currentlyrobbingsudest', function(robb)
-	holdingup = true
-	store = robb
-	secondsRemaining = 120
-end)
-
----ADD ASHDEUZO
-RegisterNetEvent('esx_holdup:currentlyrobbingsudouest')
-AddEventHandler('esx_holdup:currentlyrobbingsudouest', function(robb)
-	holdingup = true
-	store = robb
-	secondsRemaining = 100
+	storeSecondsRemaining = secondsRemaining
 end)
 
 RegisterNetEvent('esx_holdup:killblip')
@@ -94,8 +78,8 @@ Citizen.CreateThread(function()
 		Citizen.Wait(0)
 		if holdingup then
 			Citizen.Wait(1000)
-			if(secondsRemaining > 0)then
-				secondsRemaining = secondsRemaining - 1
+			if(Stores[store].secondsRemaining > 0)then
+				Stores[store].secondsRemaining = Stores[store].secondsRemaining - 1
 			end
 		end
 	end
@@ -144,7 +128,7 @@ Citizen.CreateThread(function()
 
 		if holdingup then
 
-			drawTxt(0.66, 1.44, 1.0,1.0,0.4, _U('robbery_of') .. secondsRemaining .. _U('seconds_remaining'), 255, 255, 255, 255)
+			drawTxt(0.66, 1.44, 1.0,1.0,0.4, _U('robbery_of') .. Stores[store].secondsRemaining .. _U('seconds_remaining'), 255, 255, 255, 255)
 
 			local pos2 = Stores[store].position
 
