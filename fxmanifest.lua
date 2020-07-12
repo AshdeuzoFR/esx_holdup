@@ -1,6 +1,7 @@
-version '1.0.1'
+fx_version 'bodacious'
+game  'gta5'
 
-dependency 'essentialmode'
+version '1.0.2'
 
 client_scripts {
 	'@es_extended/locale.lua',
@@ -21,3 +22,5 @@ server_scripts {
 	'config.lua',
 	'server/main.lua'
 }
+
+dependency 'es_extended'
