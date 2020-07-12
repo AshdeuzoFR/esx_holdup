@@ -56,7 +56,7 @@ AddEventHandler('esx_holdup:rob', function(robb)
 
 		if rob == false then
 
-			if(cops > 0)then
+			if(cops >= Config.NumberOfCopsRequired)then
 
 				rob = true
 				for i=1, #xPlayers, 1 do
